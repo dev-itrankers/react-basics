@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 
-class Counter extends Component {
+class Counter extends PureComponent {
   state = { count: 1 };
   inc = e => {
     let count = this.state.count;
@@ -15,6 +15,7 @@ class Counter extends Component {
   };
   render() {
     let { count } = this.state;
+    console.log("Counter Rendering");
     return (
       <div>
         <input type="button" value="decrement" onClick={this.dec} />

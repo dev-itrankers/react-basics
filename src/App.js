@@ -21,8 +21,13 @@ class App extends Component {
 
   render() {
     let { fname = "", lname = "" } = this.state || {};
-    console.log(`Rendering`);
-    return <Counter />;
+    console.log(`App Rendering`);
+    return (
+      <div>
+        <input type="text" value={fname} name="fname" onChange={this.change} />
+        <Counter />
+      </div>
+    );
   }
 }
 
