@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-
+import Counter from "./counter";
 class App extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     let state = this.state || {};
@@ -22,25 +22,7 @@ class App extends Component {
   render() {
     let { fname = "", lname = "" } = this.state || {};
     console.log(`Rendering`);
-    return (
-      <div>
-        <input
-          type="text"
-          name="fname"
-          value={fname}
-          placeholder="fname"
-          onChange={this.change}
-        />
-        <input
-          type="text"
-          name="lname"
-          value={lname}
-          placeholder="lname"
-          onChange={this.change}
-        />
-        <input type="button" value="clickMe" onClick={this.onBtnClick} />
-      </div>
-    );
+    return <Counter />;
   }
 }
 
