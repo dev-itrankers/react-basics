@@ -2,30 +2,33 @@ import React, { Component } from "react";
 import "./App.css";
 import Counter from "./counter";
 class App extends Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    let state = this.state || {};
-    let op = {};
-    Object.keys(state).map(key =>
-      state[key] === nextState[key] ? undefined : (op[key] = nextState[key])
-    );
-    console.log(op);
-    return true;
-  }
-  change = e => {
-    let { name, value } = e.target;
-    this.setState({ [name]: value });
+  state = { count: [1, 2, 5, 0] };
+  inc = ind => {
+    let count = [...this.state.count];
+    count[ind] = ++count[ind];
+    this.setState({ count });
   };
-  onBtnClick = e => {
-    this.setState({});
+  dec = ind => {
+    let count = [...this.state.count];
+    count[ind] = --count[ind];
+    if (count[ind] < 0) return;
+    this.setState({ count });
   };
 
   render() {
-    let { fname = "", lname = "" } = this.state || {};
-    console.log(`App Rendering`);
+    let { count } = this.state || {};
     return (
       <div>
-        <input type="text" value={fname} name="fname" onChange={this.change} />
-        <Counter />
+        <p>Total : {count.filter(x => x > 0).length}</p>
+        {count.map((val, index) => (
+          <Counter
+            key={index}
+            index={index}
+            value={val}
+            onInc={this.inc}
+            onDec={this.dec}
+          />
+        ))}
       </div>
     );
   }

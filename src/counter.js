@@ -1,26 +1,18 @@
 import React, { PureComponent } from "react";
 
 class Counter extends PureComponent {
-  state = { count: 1 };
-  inc = e => {
-    let count = this.state.count;
-    ++count;
-    this.setState({ count });
-  };
-  dec = e => {
-    let count = this.state.count;
-    --count;
-    if (count < 0) return;
-    this.setState({ count });
-  };
+  componentDidMount() {
+    console.log(this.props);
+  }
+  onInc = e => this.props.onInc(this.props.index);
+  onDec = e => this.props.onDec(this.props.index);
   render() {
-    let { count } = this.state;
-    console.log("Counter Rendering");
+    let { value: count } = this.props;
     return (
       <div>
-        <input type="button" value="decrement" onClick={this.dec} />
+        <input type="button" value="decrement" onClick={this.onDec} />
         &nbsp;&nbsp;{count}&nbsp;&nbsp;
-        <input type="button" value="increment" onClick={this.inc} />
+        <input type="button" value="increment" onClick={this.onInc} />
       </div>
     );
   }
